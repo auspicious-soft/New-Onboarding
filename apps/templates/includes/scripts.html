@@ -1,0 +1,71 @@
+
+<!-- Core -->
+<script src="{{ ASSETS_ROOT }}/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/headroom.js/dist/headroom.min.js"></script>
+
+<!-- Vendor JS -->
+<script src="{{ ASSETS_ROOT }}/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/nouislider/distribute/nouislider.min.js"></script>
+
+<script src="{{ ASSETS_ROOT }}/vendor/vivus/dist/vivus.min.js"></script>
+
+<!-- pixel JS -->
+<script src="{{ ASSETS_ROOT }}/js/pixel.js"></script>
+
+<!-- ajax -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+// login form
+
+// // employee form
+// document.getElementById('employeeForm').onsubmit = (e) => {
+//     debugger
+//     e.preventDefault()
+//     const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+
+//     fetch ('{% url "employee_document_api" %}', {
+//         method: "POST",
+//         body: new FormData(e.target),
+//         headers: {'X-CSRFToken' : csrfToken}
+//     })
+//         .then((response) => {
+//             debugger
+//             if(!response.ok) {
+//                 return response.text().then(text => { throw new Error( "Incorrect Username / Password please try again.") })
+//             } else {
+//                 return response.text()
+//             }
+//         })
+//         .then((result) => {
+//             location.reload()
+//         })
+//         .catch((err) => {
+//             $(".error_msg").text(err)
+//         })
+//     }
+</script>
+
+<!-- Core -->
+<!-- <script src="{{ ASSETS_ROOT }}/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/headroom.js/dist/headroom.min.js"></script> -->
+
+<!-- Vendor JS -->
+<!-- <script src="{{ ASSETS_ROOT }}/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/jarallax/dist/jarallax.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/vivus/dist/vivus.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/chartist/dist/chartist.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/@glidejs/glide/dist/glide.min.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/countup.js/dist/countUp.umd.js"></script>
+<script src="{{ ASSETS_ROOT }}/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script> -->
+
+<!-- pixel JS -->
+<!-- <script src="{{ ASSETS_ROOT }}/js/pixel.js"></script> -->
+<!-- Custome JS -->
+<!-- <script src="{{ ASSETS_ROOT }}/js/tab-script.js"></script> -->

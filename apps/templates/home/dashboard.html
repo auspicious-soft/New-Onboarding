@@ -1,0 +1,54 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Admin Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="section section-lg">
+    <div class="container">
+        <h2>User Documents</h2>
+        <div class="table-responsive">          
+        <!-- <table class="table">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Documents</th>
+              <th>Date Submit</th>
+              <th>Expried Documents</th>
+              <th>Expried Date</th>
+              <th>Expried Documents</th>
+              <th>Information Complete</th>
+              <th>User Complaint</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{user_docs}}===
+            {% if user_docs %}         
+              <p>{{user}}</p>
+
+              {% for u in user_docs %}
+                <p>{{u.file_name}}</p>
+                <p>{{u.date_created}}</p>
+                <p>{{u.expiry_date}}</p>
+                <p>{{u.expiry_date}}</p>
+                <p>USA</p>
+                <p>New York</p>
+                <p>USA</p>
+              {% endfor %}
+
+           
+            {% endif %}
+          </tbody>
+        </table> -->
+        </div>
+      </div>
+</section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

@@ -1,0 +1,483 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Employee Form {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<section class="section section-lg">
+    <div class="container">
+        <div class="row justify-content-center">
+            <h2 id="heading">Employee/Contractor Information Form</h2>
+            <p>Fill all form field to go to next step</p>
+            <form id="employeeForm" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li class="active" id="account"><strong>Employee Details</strong></li>
+                    <li id="personal"><strong>Employee Documents</strong></li>
+                </ul>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Employee Details:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step 1 - 2</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="fieldlabels">Your Employee ID: *</label> 
+                                <input type="text" name="employee_id" value="{{profile.id}}" readonly disabled /> 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Bussiness Name: *</label> 
+                                <input type="text" name="bussiness_name" {% if profile.bussiness_name %} value="{{profile.bussiness_name}}" {% else %} placeholder="Bussiness Name" {% endif %}  /> 
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">ABN: *</label> 
+                                <input type="number" name="abn"  {% if profile.abn %} value="{{profile.abn}}" {% else %} placeholder="ABN" {% endif %} required /> 
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">First Name: *</label> 
+                                <input type="text" name="first_name" {% if profile.first_name %} value="{{profile.first_name}}" {% else %} placeholder="First Name" {% endif %} required /> 
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Last Name: </label> 
+                                <input type="text" name="last_name" {% if profile.last_name %} value="{{profile.last_name}}" {% else %} placeholder="Last Name" {% endif %} />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Middle Name: </label> 
+                                <input type="text" name="middle_name" {% if profile.middle_name %} value="{{profile.middle_name}}" {% else %} placeholder="Middle Name" {% endif %} /> 
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Date of Birth: </label> 
+                                <input type="date" name="birthday" {% if profile.birthday %} value="{{profile.birthday|date:'Y-m-d'}}" {% else %} placeholder="Date of Birth" {% endif %} /> 
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="fieldlabels">Search Address: </label> 
+                                <input type="text" name="search_address" {% if profile.search_address %} value="{{profile.search_address}}" {% else %} placeholder="Search Address" {% endif %} /> 
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="fieldlabels">Street Address: </label> 
+                                <input class="form-control" rows="2" name="street_address" {% if profile.street_address %} value="{{profile.street_address}}" {% else %} placeholder="Street Address" {% endif %} />
+                                <!-- <input type="text" name="street_address" placeholder="Street Address" required />  -->
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Suburb/City: </label> 
+                                <input type="text" name="city"{% if profile.city %} value="{{profile.city}}" {% else %} placeholder="Suburb/City" {% endif %} /> 
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Country: </label> 
+                                <input type="text" name="country" {% if profile.country %} value="{{profile.country}}" {% else %} placeholder="Country" {% endif %} />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <hr>
+                            <div class="col-md-12 col-sm-12">Account Details</div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">BSB: *</label> 
+                                <input type="text" name="bsb" {% if profile.bsb %} value="{{profile.bsb}}" {% else %} placeholder="BSB" {% endif %} required/> 
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <label class="fieldlabels">Account Number: *</label> 
+                                <input type="number" name="account_number" {% if profile.account_number %} value="{{profile.account_number}}" {% else %} placeholder="Account Number" {% endif %} required />
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" name="next" class="next action-button" value="Next" />
+                    <input type="reset" name="cancel" class="action-button" value="Cancel" />
+                </fieldset>
+                <fieldset>
+                    <div class="form-card">
+                        <div class="row">
+                            <div class="col-7">
+                                <h2 class="fs-title">Employee Documents:</h2>
+                            </div>
+                            <div class="col-5">
+                                <h2 class="steps">Step-2</h2>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-xs-3 col-md-3">
+                                <p class="error_msg"></p>
+                                <div class="slected_crf"></div>
+                                
+                                <iframe id="FileFrame" src="about:blank" height="100%"></iframe>
+
+                                <!-- <iframe id="iframe1">
+                                    <p>Your browser does not support iframes.</p>
+                                </iframe> -->
+                                <!-- <img class="img-responsive" src="{{ ASSETS_ROOT }}/img/c.jpg" alt="Brain Image" width="960" height="600"> -->
+                            </div>
+                            <div class="col-xs-9 col-md-9">
+                                <div class = "container">  
+                                    <h3> Employee/Contractor Information </h3>  
+                                    <form>  
+                                        <div class="row divBorder"> 
+                                            <legend>CPR Certificate</legend>
+                                            <div class="col-3">
+                                                <label class="" for="Number">
+                                                    Number</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="number[]" id="number-crp_certificate" class="form-control" 
+                                                        placeholder="Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="" for="Expiry Date">
+                                                    Expiry Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="expiry_date[]" id="date-crp_certificate" class="form-control" 
+                                                        placeholder="Expiry Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="" for="Attach file">
+                                                    Attach File</label>
+                                                <div class="input-group">
+                                                    <input  type="file" data-name="CPR Certificate" name="file[]" id="fileupload-crp_certificate"  accept=".jpg,.png," style="width: 75%;" /> 
+                                                    <a id="upload-crp_certificate" type="button" onclick="uploadFile('crp_certificate')"> <i class="fa fa-upload upload_file_icon" style="margin: 10px;"></i> </a>
+                                                    <!-- <i class="fa fa-upload upload_file_icon" id="upload-button" onclick="uploadFile()"></i> -->
+                                                    <!-- <input type="file" name="file[]" id="file_upload_id"  accept=".jpg,.png," style="display:none">
+                                                    <i id="icon_upload" class="fa fa-upload upload_file_icon" onclick="uploadFile()"></i> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row divBorder"> 
+                                            <legend>First Aid Certificate</legend>
+                                            <input type="hidden" name="first_aid_certificate">
+                                            <div class="col-2">
+                                                <label class="" for="Number">
+                                                    Number</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="number[]" id="number-first_aid_certificate" class="form-control" 
+                                                        placeholder="Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <label class="" for="Issue Date">
+                                                    Issue Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="issue_date"  class="form-control" 
+                                                        placeholder="Issue Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <label class="" for="Expiry Date">
+                                                    Expiry Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="expiry_date[]" id="date-first_aid_certificate" class="form-control" 
+                                                        placeholder="Expiry Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="" for="Attach file">
+                                                    Attach File</label>
+                                                <div class="input-group">
+                                                    <input  type="file"  data-name="First Aid Certificate" name="file[]" id="fileupload-first_aid_certificate"  accept=".jpg,.png," style="width: 75%;" /> 
+                                                    <a id="upload-button" type="button" onclick="uploadFile('first_aid_certificate')"> <i class="fa fa-upload upload_file_icon" style="margin: 10px;"></i> </a>
+                                                    <!-- <input type="file" name="file[]" class="form-control" 
+                                                        placeholder="Attach File"> -->
+                                                        <!-- <input type="file" name="file[]" data-name="First Aid Certificate" class="fileupload" accept=".txt,.jpg,.png,.pdf" >
+                                                        <button id="upload-button" type="button" onclick="uploadFile()"> Upload </button> -->
+                                                        <!-- <i id="icon_upload" class="fa fa-upload upload_file_icon" onclick="uploadFile()"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row divBorder"> 
+                                            <legend>Insurance Certificate</legend>
+                                            <input type="hidden" name="insurance_certificate">
+                                            <div class="col-3">
+                                                <label class="" for="Number">
+                                                    Number</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="number[]" id="number-insurance_certificate" class="form-control" 
+                                                        placeholder="Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="" for="Expiry Date">
+                                                    Expiry Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="expiry_date[]"  id="date-insurance_certificate" class="form-control" 
+                                                        placeholder="Expiry Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="" for="Attach file">
+                                                    Attach File</label>
+                                                <div class="input-group">
+                                                    <input  type="file"  data-name="Insurance Certificate" name="file[]" id="fileupload-insurance_certificate"  accept=".jpg,.png," style="width: 75%;" /> 
+                                                    <a id="upload-button" type="button" onclick="uploadFile('insurance_certificate')"> <i class="fa fa-upload upload_file_icon" style="margin: 10px;"></i> </a>
+                                                    <!-- <input type="file" name="file[]" class="form-control" 
+                                                        placeholder="Attach File"> -->
+                                                        <!-- <input type="file" name="file[]" id="file_upload_id"  accept=".txt,.jpg,.png,.pdf" >
+                                                        <i id="icon_upload" class="fa fa-upload upload_file_icon" onclick="uploadFile()"></i> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row divBorder"> 
+                                            <legend>Agreement</legend>
+                                            <input type="hidden" name="agreement">
+                                            <div class="col-3">
+                                                <label class="" for="Number">
+                                                    Number</label>
+                                                <div class="input-group">
+                                                    <input type="number" name="number[]" id="number-agreement" class="form-control" 
+                                                        placeholder="Number">
+                                                </div>
+                                            </div>
+                                            <div class="col-3">
+                                                <label class="" for="Expiry Date">
+                                                    Expiry Date</label>
+                                                <div class="input-group">
+                                                    <input type="date" name="expiry_date[]"  id="date-agreement" class="form-control" 
+                                                        placeholder="Expiry Date">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="" for="Attach file">
+                                                    Attach File</label>
+                                                <div class="input-group">
+                                                    <input  type="file"  data-name="Agreement" name="file[]" id="fileupload-agreement"  accept=".jpg,.png," style="width: 75%;" /> 
+                                                    <a id="upload-button" type="button" onclick="uploadFile('agreement')"> <i class="fa fa-upload upload_file_icon" style="margin: 10px;"></i> </a>
+                                                    <!-- <input type="file" name="file[]" class="form-control" 
+                                                        placeholder="Attach File"> -->
+                                                    <!-- <input type="file" name="file[]" id="file_upload_id"  accept=".txt,.jpg,.png,.pdf" >
+                                                        <i id="icon_upload" class="fa fa-upload upload_file_icon" onclick="uploadFile()"></i> -->
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </form>  
+                                </div>  
+                            </div>
+                        </div>
+                    </div> 
+                    <input type="submit" class="action-button" value="Submit" /> 
+                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+<script>
+
+async function uploadFile(event) {
+  file =document.getElementById('fileupload-'+event).value;
+  number =document.getElementById('number-'+event).value;
+  date =document.getElementById('date-'+event).value;
+  if (file == '') {
+        Swal.fire({
+        title: 'No document atteched.',
+        text: "Would you still like to complete?",
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+        })
+    return false
+  }
+  if (number == '') {
+        Swal.fire({
+            title: 'Required number filed.',
+            text: "Would you still like to complete?",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+            })
+    return false
+  }
+  if (date == '') {
+
+        Swal.fire({
+            title: 'Required expiry date filed.',
+            text: "Would you still like to complete?",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+            })
+    return false
+  }
+
+  let formData = new FormData(); 
+  const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+  const val = document.getElementById('fileupload-'+event).files[0];
+  formData.append("file", val);
+  var filename= $('#fileupload-'+event).attr('data-name');
+  await fetch('{% url "employee_document_api" %}', {
+    method: "POST", 
+    body: formData,
+    headers: {'X-CSRFToken' : csrfToken}
+  }) 
+  .then((response) => {
+            debugger
+            if(!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            } else {
+                return response.text()
+            }
+        })
+        .then((result) => {
+            debugger
+            $(".slected_crf").html('<h3>Selected '+filename+ '</h3>')
+            content = JSON.parse(result)['content']
+            var doc = document.getElementById('FileFrame').contentWindow.document;
+            doc.open();
+            doc.write(content);
+            doc.close();
+        })
+        .catch((err) => {
+            debugger
+            $(".error_msg").text("Something went wrong.")
+        })
+  }
+
+
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var opacity;
+    var current = 1;
+    var steps = $("fieldset").length;
+    
+    setProgressBar(current);
+    
+    $(".next").click(function(){
+    
+    current_fs = $(this).parent();
+    next_fs = $(this).parent().next();
+    
+    //Add Class Active
+    $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+    
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({opacity: 0}, {
+    step: function(now) {
+    // for making fielset appear animation
+    opacity = 1 - now;
+    
+    current_fs.css({
+    'display': 'none',
+    'position': 'relative'
+    });
+    next_fs.css({'opacity': opacity});
+    },
+    duration: 500
+    });
+    setProgressBar(++current);
+    });
+    
+    $(".previous").click(function(){
+    
+    current_fs = $(this).parent();
+    previous_fs = $(this).parent().prev();
+    
+    //Remove class active
+    $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+    
+    //show the previous fieldset
+    previous_fs.show();
+    
+    //hide the current fieldset with style
+    current_fs.animate({opacity: 0}, {
+    step: function(now) {
+    // for making fielset appear animation
+    opacity = 1 - now;
+    
+    current_fs.css({
+    'display': 'none',
+    'position': 'relative'
+    });
+    previous_fs.css({'opacity': opacity});
+    },
+    duration: 500
+    });
+    setProgressBar(--current);
+    });
+    
+    function setProgressBar(curStep){
+    var percent = parseFloat(100 / steps) * curStep;
+    percent = percent.toFixed();
+    $(".progress-bar")
+    .css("width",percent+"%")
+    }
+    
+    // $(".submit").click(function(){
+    // return false;
+    // })
+
+// employee form
+
+document.getElementById('employeeForm').onsubmit = (e) => {
+    debugger
+    e.preventDefault()
+    const csrfToken = document.querySelector('input[name=csrfmiddlewaretoken]').value
+
+    fetch ('{% url "employee_upload" %}', {
+        method: "POST",
+        body: new FormData(e.target),
+        headers: {'X-CSRFToken' : csrfToken}
+    })
+        .then((response) => {
+            debugger
+            if(!response.ok) {
+                return response.text().then(text => { throw new Error(text) })
+            } else {
+                return response.text()
+            }
+        })
+        .then((result) => {
+            console.log("====",result)
+            debugger
+            location.reload()
+        })
+        .catch((err) => {
+            $(".error_msg").text(err)
+        })
+    }
+
+</script>
+{% endblock javascripts %}

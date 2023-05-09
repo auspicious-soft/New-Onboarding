@@ -1,0 +1,84 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Sign IN {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Section -->
+    <section class="min-vh-100 d-flex align-items-center section-image overlay-soft-dark" data-background="{{ ASSETS_ROOT }}/img/bg/form-image.jpg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            <h2 class="mb-0 h3">
+                                 Sign IN
+                            </h2>
+                            <p class="text-center">
+                                <span class="text-danger error_msg"></span>
+                                {% if form.errors %}
+                                    <span class="text-danger">{{ form.non_field_errors }}</span>
+                                {% else %}
+                                    Add your credentials
+                                {% endif %}  
+                            </p>                              
+                        </div>
+
+                        <form method="post" class="mt-4">
+                            
+                            {% csrf_token %}
+
+                            <!-- Form -->
+                            <div class="form-group mb-4">
+                                <label for="email">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
+                                    <!-- <input type="text" name="username" placeholder="Username" class="form-control" required="" id="id_username"> -->
+                                     {{ form.username }}
+                                </div>  
+                            </div>
+                            <!-- End of Form -->
+                            <div class="form-group">
+                                <!-- Form -->
+                                <div class="form-group mb-4">
+                                    <label for="password">Password</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
+                                        <!-- <input type="password" name="password" placeholder="Password" class="form-control" required="" id="id_password"> -->
+                                        {{ form.password }}
+                                    </div>  
+                                </div>
+                                <!-- End of Form -->
+                                <!-- <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <div class="form-check mb-0">
+                                        <input class="form-check-input" type="checkbox" value="" id="remember">
+                                        <label class="form-check-label mb-0" for="remember">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <div><a href="#" class="small text-right">Lost password?</a></div>
+                                </div> -->
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" name="login" class="btn btn-block btn-primary">Sign in</button>
+                            </div>
+                        </form>
+                       
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <br />    
+                </div>            
+            </div>
+        </div>
+    </section>
+        
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

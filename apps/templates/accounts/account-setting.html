@@ -1,0 +1,153 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Employee Profile {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="section section-lg pt-5 pt-md-7 bg-gray-200">
+        <div class="container">
+            <div class="row pt-5 pt-md-0">
+
+                <div class="col-12 col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card card-body bg-white border-gray-300 mb-4">
+                                <h2 class="h5 mb-4">General information</h2>
+                                <form method="post" id="changeInfoForm">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="mb-3">
+                                                
+                                                <label for="first_name">First Name</label>
+                                                <input name="first_name" class="form-control" id="first_name" type="text" {% if data.first_name %} value="{{data.first_name}}" {% else %} placeholder="Enter your first name" {% endif %} required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="mb-3">
+                                                <label for="last_name">Last Name</label>
+                                                <input class="form-control" id="last_name" name="last_name" type="text" {% if data.last_name %} value="{{data.last_name}}" {% else %} placeholder="Also your last name" {% endif %} required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="mb-3">
+                                                <label for="birthday">Birthday</label>
+                                                <input type="text" class="form-control flatpickr-input" id="birthday" name="birthday"  data-toggle="date" {% if data.birthday %} value="{{data.birthday}}" {% else %} placeholder="Select your birth date"{% endif %} required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="gender">Gender</label>
+                                            <select class="form-select" id="gender" name="gender" {% if data.gender %} value="{{data.gender}}" {% else %} aria-label="Default select example" {% endif %} required>
+                                                <option>Female</option>
+                                                <option>Male</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <div class="mb-3">
+                                                <label for="email">Email</label>
+                                                <input class="form-control" id="email" name="email" type="email" {% if data.email %} value="{{data.email}}" placeholder="name@company.com" {% endif %} required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <div class="mb-3">
+                                                <label for="phone">Phone</label>
+                                                <input class="form-control" id="phone" name="phone" type="number" {% if data.phone %} value="{{data.phone}}" placeholder="+12-345 678 910"{% endif %} required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h2 class="h5 my-4">Location</h2>
+                                    <div class="row">
+                                        <div class="col-sm-9 mb-3">
+                                            <div class="mb-3">
+                                                <label for="address">Address</label>
+                                                <input class="form-control" id="address" name="address" type="text" {% if data.address %} value="{{data.address}}" placeholder="Enter your home address"{% endif %} required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 mb-3">
+                                            <div class="mb-3">
+                                                <label for="number">Number</label>
+                                                <input class="form-control" id="number" name="number" type="number" {% if data.number %} value="{{data.number}}" placeholder="No."{% endif %} required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 mb-3">
+                                            <div class="mb-3">
+                                                <label for="city">City</label>
+                                                <input class="form-control" id="city" name="city" type="text" {% if data.city %} value="{{data.city}}" placeholder="City"{% endif %} required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 mb-3">
+                                            <label for="country2">Country</label>
+                                            <select class="form-select" id="country2" name="country" required>
+                                                <option>United States</option>
+                                                <option>Germany</option>
+                                                <option>France</option>
+                                                <option>Spain</option>
+                                                <option>Italy</option>
+                                                <option>Russia</option>
+                                                <option>Japan</option>
+                                                <option>India</option>
+                                                <option>China</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="mb-3">
+                                                <label for="zip">ZIP</label>
+                                                <input class="form-control" id="zip" name="zipcode" type="tel" {% if data.zipcode %} value="{{data.zipcode}}" placeholder="ZIP"{% endif %} required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card card-body bg-white border-gray-300 mb-4">
+                                <form id="changeAvatarForm" enctype="multipart/form-data">
+                                <h2 class="h5 mb-4">Select profile photo</h2>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-1 mb-2 mb-lg-0">
+                                        <!-- Avatar -->
+                                        <div class="avatar-lg">
+                                            <img class="rounded-circle" id="avatar-img" src="{% if user.image%}{{user.image}}{% else %}{{ ASSETS_ROOT }}/img/team/profile-picture-3.jpg{% endif %}" alt="change avatar">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-3 mb-lg-0">
+                                        <div class="h6 mb-0 ms-lg-3">Your avatar</div>
+                                        <small class="text-gray ms-lg-3">JPG, GIF or PNG. Max size of 800K</small>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <!-- Form -->
+                                        <div class="mb-3">
+                                            <label for="formFile" class="form-label">Default file input example</label>
+                                            <input class="form-control" type="file" id="avatar-input" accept="image/*">
+                                        </div>
+                                        <!-- End of Form -->
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+   
+{% endblock javascripts %}
