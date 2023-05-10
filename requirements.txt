@@ -7,7 +7,6 @@ packaging==23.1
 Pillow==9.5.0
 pytesseract==0.3.10
 pytz==2023.3
-scipy==1.10.1
 six==1.16.0
 smart-open==6.3.0
 sqlparse==0.4.4
